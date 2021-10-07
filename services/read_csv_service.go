@@ -10,7 +10,7 @@ import (
 	"strconv"
 )
 
-func ReadCsv(id string) (entities.Pokemon, error) {
+func ReadCsv(id string) (entities.CatFactRow, error) {
 	// Open the file
 
 	fmt.Println("reading file...")
@@ -18,9 +18,9 @@ func ReadCsv(id string) (entities.Pokemon, error) {
 	target, targetError := strconv.Atoi(id)
 	if targetError != nil {
 		fmt.Println("target error")
-		return notFound(), errors.New("Pokemon id must be a valid number")
+		return notFound(), errors.New("Fact id must be a valid number")
 	}
-	csvfile, err := os.Open("resources/pokemon.csv")
+	csvfile, err := os.Open("resources/cat_facts.csv")
 	if err != nil {
 		fmt.Println("Couldn't open the csv file", err)
 		return notFound(), errors.New("An error happened opening the CSV file")
@@ -44,7 +44,7 @@ func ReadCsv(id string) (entities.Pokemon, error) {
 		rid, errId := strconv.Atoi(record[0])
 		if errId == nil {
 			if rid == target {
-				return entities.Pokemon{Id: rid, Name: record[1]}, nil
+				return entities.CatFactRow{Id: rid, Fact: record[1]}, nil
 			}
 		} else {
 
@@ -53,6 +53,6 @@ func ReadCsv(id string) (entities.Pokemon, error) {
 	}
 }
 
-func notFound() entities.Pokemon {
-	return entities.Pokemon{Id: 0, Name: "MissingNo"}
+func notFound() entities.CatFactRow {
+	return entities.CatFactRow{Id: 0, Fact: "Not Found"}
 }
