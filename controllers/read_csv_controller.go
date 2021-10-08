@@ -9,7 +9,7 @@ import (
 
 func ReadCsv(w http.ResponseWriter, r *http.Request, id string) {
 
-	p, err := services.ReadCsv(id)
+	cf, err := services.ReadCsv(id)
 
 	fmt.Println("controller reading err", err)
 	if err == nil {
@@ -17,7 +17,6 @@ func ReadCsv(w http.ResponseWriter, r *http.Request, id string) {
 	} else {
 		w.WriteHeader(http.StatusInternalServerError)
 	}
-
-	pokemonJson, _ := json.Marshal(p)
-	w.Write(pokemonJson)
+	cfJson, _ := json.Marshal(cf)
+	w.Write(cfJson)
 }
