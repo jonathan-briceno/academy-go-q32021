@@ -28,10 +28,7 @@ func SaveRowOnCsv(cf entities.CatFact) {
 		rows = rows + 1
 	}
 	rows = rows + 1
-	//rows := len(r)
-	// Iterate through the records
 
-	///
 	fmt.Println("rows ", rows)
 	w := csv.NewWriter(f)
 	records := [][]string{
