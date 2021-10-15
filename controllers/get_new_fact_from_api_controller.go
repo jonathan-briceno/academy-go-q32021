@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"academy-go-q32021/services"
+	"academy-go-q32021/repositories"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -9,11 +9,11 @@ import (
 
 func GetNewFactFromAPI(w http.ResponseWriter, r *http.Request) {
 
-	cf, err := services.CallExternalApi()
+	cf, err := repositories.CallExternalApi()
 
 	if err == nil {
 		fmt.Println("Now Saving on CSV")
-		services.SaveRowOnCsv(cf)
+		repositories.SaveRowOnCsv(cf)
 	} else {
 
 		w.WriteHeader(http.StatusInternalServerError)

@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	services "academy-go-q32021/services"
+	"academy-go-q32021/repositories"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -9,7 +9,7 @@ import (
 
 func ReadCsv(w http.ResponseWriter, r *http.Request, id string) {
 
-	cf, err := services.ReadCsv(id)
+	cf, err := repositories.ReadCsv(id)
 
 	fmt.Println("controller reading err", err)
 	if err == nil {
